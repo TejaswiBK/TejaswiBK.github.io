@@ -2,14 +2,597 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tejaswi Telaginamani | Web Developer</title>
+  <title>Tejaswi Telaginamani | Full Stack Web Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --primary: #0066cc;
+      --primary-dark: #0052a3;
+      --accent: #00a8e8;
+      --success: #27ae60;
+      --bg: #f8f9fa;
+      --bg-alt: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --border: #e0e0e0;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header & Nav */
+    header {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 0.3rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .burger span {
+      width: 22px;
+      height: 2.5px;
+      background: var(--text);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0066cc 0%, #00a8e8 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem 0;
+      text-align: left;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1rem;
+      border-radius: var(--radius);
+    }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-start;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: #f0f0f0;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
+
+    .hero-image {
+      text-align: center;
+    }
+
+    .hero-image img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+    }
+
+    .about-text h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .about-info {
+      background: var(--bg-alt);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+    }
+
+    .about-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .about-info li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .about-info li:last-child {
+      border-bottom: none;
+    }
+
+    .about-info span {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--bg-alt);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--accent);
+    }
+
+    .skill-category h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .skill-category ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .skill-category li {
+      padding: 0.4rem 0;
+      color: var(--text-muted);
+    }
+
+    .skill-category li::before {
+      content: "✓ ";
+      color: var(--success);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .experience-timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent);
+    }
+
+    .exp-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      left: -2.6rem;
+      top: 0.3rem;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--bg);
+    }
+
+    .exp-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .exp-company {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .exp-item ul {
+      margin: 0.5rem 0 0 0;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .exp-item li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-alt);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: var(--bg);
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    /* Contact Section */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      background: var(--bg-alt);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+    }
+
+    .contact-info h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .contact-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item p {
+      margin: 0.25rem 0;
+      font-size: 0.95rem;
+    }
+
+    .contact-item span {
+      font-weight: 600;
+      color: var(--primary);
+      display: block;
+      font-size: 0.85rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    }
+
+    .form-status {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      min-height: 1.2em;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 1rem;
+        flex-direction: column;
+        background: var(--bg-alt);
+        padding: 1rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        gap: 0.5rem;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-content h1 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .hero-content .subtitle {
+        text-align: center;
+      }
+
+      .hero-content p {
+        text-align: center;
+      }
+
+      .hero-stats {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .about-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      main {
+        padding: 0 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="header" id="home">
-    <nav class="nav">
-      <div class="logo">Tejaswi<span>.</span></div>
+  <header>
+    <nav>
+      <div class="logo">Tejaswi.</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -18,255 +601,320 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="burger" id="burger" aria-label="Toggle navigation">
+      <button class="burger" id="burger">
         <span></span><span></span><span></span>
       </button>
     </nav>
+  </header>
 
-    <div class="hero">
-      <div class="hero-text">
-        <h1>Hi, I'm <span class="accent">Tejaswi Telaginamani</span></h1>
-        <h2>Full Stack Web Developer</h2>
-        <p>
-          Building scalable Drupal-based web applications, optimizing performance,
-          and ensuring WCAG 2.1 accessibility for enterprise clients.[file:1]
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn primary">View Projects</a>
-          <a href="#contact" class="btn outline">Contact Me</a>
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Tejaswi Telaginamani</h1>
+        <p class="subtitle">Full Stack Web Developer</p>
+        <p>Creative and detail-oriented web developer with 3+ years of experience building scalable Drupal solutions, optimizing web performance, and delivering enterprise-level projects for Fortune 500 companies.</p>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Enterprise Clients</div>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
         </div>
       </div>
 
-      <div class="hero-photo">
-        <!-- Put your actual image file here (same folder), e.g. me.jpg -->
-        <img src="me.jpg" alt="Tejaswi Telaginamani portrait" />
+      <div class="hero-image">
+        <img src="me.jpg" alt="Tejaswi Telaginamani" />
       </div>
     </div>
-  </header>
+  </section>
 
   <main>
     <!-- About -->
-    <section id="about" class="section">
-      <div class="section-title">
-        <h2>About</h2>
-        <span class="line"></span>
-      </div>
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
       <div class="about-grid">
-        <div>
+        <div class="about-text">
           <h3>Web Developer at KAUST</h3>
-          <p>
-            Full Stack Web Developer with 3+ years of experience specializing in PHP and Drupal,
-            delivering enterprise-level website migrations and custom solutions for Fortune 500
-            clients like Merck and Johnson & Johnson.[file:1]
-          </p>
-          <p>
-            Focused on performance, accessibility, and responsive design across web and mobile,
-            with hands-on experience in Core Web Vitals optimization and WCAG 2.1 compliance.[file:1]
-          </p>
+          <p>I'm a creative and detail-oriented Full Stack Web Developer with over three years of hands-on experience in web development, digital content management, and cross-functional project delivery. I specialize in developing custom themes and plugins, and optimizing web platforms for scalability and performance.</p>
+          <p>My expertise includes:</p>
+          <ul style="margin-left: 1.5rem;">
+            <li>Custom Drupal theme and plugin development</li>
+            <li>Enterprise website migration and optimization</li>
+            <li>Web security standards and compliance measures</li>
+            <li>Responsive design and accessibility enhancement</li>
+            <li>Cross-team collaboration (developers, designers, content specialists)</li>
+          </ul>
         </div>
-        <div class="about-details">
+        <div class="about-info">
+          <h3 style="margin-top: 0;">Quick Info</h3>
           <ul>
             <li><span>Location:</span> KAUST, Thuwal, Saudi Arabia</li>
-            <li><span>Role:</span> Web Developer</li>
-            <li><span>Experience:</span> 3+ years</li>
+            <li><span>Role:</span> Full Stack Web Developer</li>
+            <li><span>Experience:</span> 3+ Years</li>
+            <li><span>Current:</span> Cognizant Technological Solutions</li>
             <li><span>Email:</span> <a href="mailto:tejaswibt1999@gmail.com">tejaswibt1999@gmail.com</a></li>
-            <li><span>LinkedIn:</span> <a href="https://www.linkedin.com/in/teju-t/" target="_blank">teju-t</a></li>
+            <li><span>Phone:</span> +966 0567993708</li>
+            <li><span>LinkedIn:</span> <a href="https://www.linkedin.com/in/teju-t/" target="_blank">linkedin.com/in/teju-t</a></li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="section section-alt">
-      <div class="section-title">
-        <h2>Skills</h2>
-        <span class="line"></span>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Frontend</h3>
+    <section id="skills">
+      <h2 class="section-title">Skills & Expertise</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Frontend Development</h3>
           <ul>
             <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript</li>
+            <li>CSS3 & SCSS</li>
+            <li>JavaScript (ES6+)</li>
+            <li>Responsive Design</li>
+            <li>Cross-browser Compatibility</li>
           </ul>
         </div>
-        <div class="skill-card">
+        <div class="skill-category">
           <h3>Backend & CMS</h3>
           <ul>
             <li>PHP</li>
             <li>Drupal 8/9/10</li>
-            <li>Custom themes & plugins</li>
+            <li>Custom Themes</li>
+            <li>Custom Plugins</li>
+            <li>WordPress VIP Platform</li>
           </ul>
         </div>
-        <div class="skill-card">
+        <div class="skill-category">
           <h3>Database & APIs</h3>
           <ul>
             <li>MySQL / SQL</li>
             <li>REST APIs</li>
+            <li>Database Optimization</li>
+            <li>Data Management</li>
           </ul>
         </div>
-        <div class="skill-card">
-          <h3>Tools & Standards</h3>
+        <div class="skill-category">
+          <h3>Tools & Methods</h3>
           <ul>
-            <li>Git, GitHub, VS Code</li>
-            <li>WCAG 2.1, Responsive Design</li>
-            <li>Cross-browser compatibility</li>
+            <li>Git & GitHub</li>
+            <li>VS Code</li>
+            <li>SDLC Methodologies</li>
+            <li>Agile Development</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Soft Skills</h3>
+          <ul>
+            <li>Team Collaboration</li>
+            <li>Communication</li>
+            <li>Problem Solving</li>
+            <li>Project Management</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <ul>
+            <li>English (Advanced)</li>
+            <li>Hindi (Intermediate)</li>
+            <li>Kannada (Native)</li>
+            <li>Telugu (Intermediate)</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="section">
-      <div class="section-title">
-        <h2>Experience</h2>
-        <span class="line"></span>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Web Developer | Cognizant</h3>
-          <span class="timeline-date">Feb 2023 – Sep 2025 · Bangalore, India</span>
+    <section id="experience">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="experience-timeline">
+        <div class="exp-item">
+          <h3 class="exp-title">Web Developer</h3>
+          <p class="exp-company">Cognizant Technological Solutions Co. · Bangalore, India · Feb 2023 – Sep 2025</p>
           <ul>
-            <li>Developed 5+ custom Drupal themes and plugins, boosting site performance scores by 25% and mobile engagement by 20%.[file:1]</li>
-            <li>Migrated 10,000+ pages to Drupal for Merck with zero downtime and 100% data integrity.[file:1]</li>
-            <li>Implemented WCAG 2.1 across 15+ web properties, improving accessibility ratings by 18%.[file:1]</li>
-            <li>Optimized Core Web Vitals, cutting average page load from 4.2s to 3.1s.[file:1]</li>
+            <li>Developed custom themes, templates, and plugins for Merck aligned with brand guidelines and technical standards</li>
+            <li>Implemented security standards, compliance measures, and GDPR requirements across multiple platforms</li>
+            <li>Enhanced responsiveness and accessibility features for mobile and web platforms, improving user engagement by 20%</li>
+            <li>Collaborated with cross-functional teams (developers, designers, content specialists) ensuring smooth delivery and high-quality UX</li>
+            <li>Optimized website performance and load times through caching strategies and code optimization</li>
           </ul>
         </div>
 
-        <div class="timeline-item">
-          <h3>Programmer Analyst Trainee | Cognizant</h3>
-          <span class="timeline-date">Feb 2022 – Jan 2023 · Bangalore, India</span>
+        <div class="exp-item">
+          <h3 class="exp-title">Programmer Analyst Trainee</h3>
+          <p class="exp-company">Cognizant Technical Solutions Co. · Bangalore, India · Feb 2022 – Mar 2023</p>
           <ul>
-            <li>Completed full-stack training in PHP, Drupal, HTML5, CSS3, JavaScript, and MySQL with 95% proficiency.[file:1]</li>
-            <li>Developed 8+ Drupal sites with role-based workflows supporting 50+ content editors.[file:1]</li>
-            <li>Built secure registration and login systems using PHP and MySQL.[file:1]</li>
+            <li>Completed intensive full-stack web development training in PHP, Drupal, HTML5, CSS3, JavaScript, and MySQL (95% proficiency)</li>
+            <li>Developed and customized 8+ Drupal sites with role-based content creation workflows and approval systems</li>
+            <li>Built client-side and server-side web applications including secure registration and login systems</li>
+            <li>Designed and deployed 12+ responsive web pages and personal portfolio sites with 100% mobile compatibility</li>
+            <li>Gained hands-on experience with SDLC, Git version control, and collaborative project execution</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section section-alt">
-      <div class="section-title">
-        <h2>Projects</h2>
-        <span class="line"></span>
-      </div>
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
       <div class="projects-grid">
-        <article class="project-card">
-          <h3>Merck Website Migration</h3>
-          <p>
-            Led full-stack Drupal migration for 10,000+ pages from a legacy platform, ensuring
-            zero data loss, improved performance, and enterprise-grade scalability.[file:1]
-          </p>
-          <ul class="tags">
-            <li>Drupal</li>
-            <li>PHP</li>
-            <li>Performance</li>
-          </ul>
-        </article>
+        <div class="project-card">
+          <h3>Merck Website Migration & Development</h3>
+          <p>Led enterprise website migration to WordPress VIP platform with custom theme and plugin development. Implemented advanced security measures, brand alignment, and performance optimization, delivering zero downtime migration.</p>
+          <div class="project-tags">
+            <span class="tag">WordPress VIP</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Security</span>
+            <span class="tag">Performance</span>
+          </div>
+        </div>
 
-        <article class="project-card">
+        <div class="project-card">
           <h3>Johnson & Johnson Web Suite</h3>
-          <p>
-            Delivered responsive web customization, brand alignment, and content integration across
-            5 regional Drupal websites with consistent UX and mobile-first design.[file:1]
-          </p>
-          <ul class="tags">
-            <li>Drupal</li>
-            <li>Responsive UI</li>
-            <li>UX</li>
-          </ul>
-        </article>
+          <p>Delivered comprehensive web customization and branding alignment across multiple regional websites. Integrated advanced content management systems and implemented responsive design for seamless user experience across all devices.</p>
+          <div class="project-tags">
+            <span class="tag">Drupal</span>
+            <span class="tag">Responsive Design</span>
+            <span class="tag">CMS</span>
+            <span class="tag">Branding</span>
+          </div>
+        </div>
 
-        <article class="project-card">
-          <h3>Drupal Internal Tools</h3>
-          <p>
-            Built internal project management and resource allocation dashboards for Cognizant,
-            integrating role-based workflows and analytics.[file:1]
-          </p>
-          <ul class="tags">
-            <li>Drupal</li>
-            <li>MySQL</li>
-            <li>Dashboards</li>
-          </ul>
-        </article>
+        <div class="project-card">
+          <h3>Cognizant Internal Development</h3>
+          <p>Built front-end and Drupal-based internal development projects including project management dashboards and resource allocation tools. Developed role-based access control systems supporting enterprise workflows.</p>
+          <div class="project-tags">
+            <span class="tag">Drupal</span>
+            <span class="tag">Dashboards</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Frontend</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Education & Certifications -->
-    <section id="education" class="section">
-      <div class="section-title">
-        <h2>Education & Certs</h2>
-        <span class="line"></span>
-      </div>
-      <div class="edu-grid">
-        <div>
+    <!-- Education -->
+    <section id="education">
+      <h2 class="section-title">Education & Certifications</h2>
+      <div class="about-grid">
+        <div class="about-text">
           <h3>Education</h3>
-          <ul>
-            <li>
-              Bachelor of Engineering in Electronics & Communication ·
-              Visvesvaraya Technological University, Belagavi · 2021[file:1]
-            </li>
-            <li>
-              Diploma in Electronics & Communication Engineering ·
-              Board of Technical Examination, Bengaluru · 2018[file:1]
-            </li>
-          </ul>
+          <p><strong>Bachelor of Engineering (B.E.)</strong></p>
+          <p>Visvesvaraya Technological University, Belagavi, India (2021)<br>Major: Electronics and Communication Engineering<br>Project: "Chaos Based Partial Image Encryption"</p>
+          
+          <p><strong>Diploma in Electronics & Communication Engineering</strong></p>
+          <p>Board of Technical Examination, Bengaluru, India (2018)</p>
         </div>
-        <div>
-          <h3>Certifications</h3>
+        <div class="about-info" style="border-left-color: var(--success);">
+          <h3 style="margin-top: 0;">Certifications</h3>
           <ul>
-            <li>AWS Cloud Practitioner – Certified[file:1]</li>
-            <li>Microsoft Azure Fundamentals AZ-900 – Certified[file:1]</li>
+            <li><span>✓ AWS Cloud Practitioner</span> Certified</li>
+            <li><span>✓ Microsoft Azure Fundamentals AZ-900</span> Certified</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section section-alt">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <span class="line"></span>
-      </div>
-      <div class="contact-grid">
-        <div>
-          <p>
-            Open to opportunities in full-stack development, Drupal engineering, and
-            web performance/accessibility-focused roles.[file:1]
-          </p>
-          <ul class="contact-list">
-            <li><span>Email:</span> <a href="mailto:tejaswibt1999@gmail.com">tejaswibt1999@gmail.com</a></li>
-            <li><span>Phone:</span> +966 0545892499</li>
-            <li><span>LinkedIn:</span> <a href="https://www.linkedin.com/in/teju-t/" target="_blank">linkedin.com/in/teju-t</a></li>
-          </ul>
+    <section id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Contact Details</h3>
+          <div class="contact-item">
+            <span>Email</span>
+            <p><a href="mailto:tejaswibt1999@gmail.com">tejaswibt1999@gmail.com</a></p>
+          </div>
+          <div class="contact-item">
+            <span>Phone</span>
+            <p><a href="tel:+966567993708">+966 0567993708</a></p>
+          </div>
+          <div class="contact-item">
+            <span>Location</span>
+            <p>KAUST, Thuwal, Saudi Arabia</p>
+          </div>
+          <div class="contact-item">
+            <span>LinkedIn</span>
+            <p><a href="https://www.linkedin.com/in/teju-t/" target="_blank">linkedin.com/in/teju-t</a></p>
+          </div>
+          <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem;">Open to opportunities in full-stack development, Drupal engineering, and web performance optimization roles.</p>
         </div>
+
         <form class="contact-form" id="contactForm">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" required />
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" required />
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required />
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" rows="4" required></textarea>
+            <textarea id="message" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn primary">Send Message</button>
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
           <p class="form-status" id="formStatus"></p>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Tejaswi Telaginamani. All rights reserved.</p>
+  <footer>
+    <p>&copy; <span id="year"></span> Tejaswi Telaginamani. All rights reserved. | Full Stack Web Developer</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Mobile menu toggle
+    const burger = document.getElementById("burger");
+    const navLinks = document.getElementById("navLinks");
+
+    burger.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A") {
+        navLinks.classList.remove("open");
+      }
+    });
+
+    // Contact form
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        statusEl.textContent = "Please fill in all fields.";
+        statusEl.style.color = "#c0392b";
+        return;
+      }
+
+      statusEl.textContent = "✓ Thank you! I'll get back to you soon.";
+      statusEl.style.color = var(--success);
+      form.reset();
+    });
+
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
