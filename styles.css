@@ -253,6 +253,7 @@ img {
   padding: 1.1rem 1.2rem;
 }
 
+/* keep your existing code */
 .skill-card h3 {
   font-size: 1rem;
   margin-bottom: 0.4rem;
@@ -266,18 +267,20 @@ img {
   color: var(--muted);
 }
 
-/* Add from here */
 .skill-item {
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-.skill-icon {
-  width: 8px;   /* adjust size here */
+/* stronger selector + override max-width */
+.skill-card img.skill-icon {
+  width: 8px;
   height: 8px;
+  max-width: none;
   object-fit: contain;
 }
+
 
 
 /* Timeline */
