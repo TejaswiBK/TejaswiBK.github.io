@@ -265,6 +265,8 @@ img {
   font-size: 0.9rem;
   color: var(--muted);
 }
+
+/* Add from here */
 .skill-item {
   display: flex;
   align-items: center;
@@ -272,10 +274,11 @@ img {
 }
 
 .skill-icon {
-  width: 14px;   /* adjust size here */
-  height: 14px;
+  width: 8px;   /* adjust size here */
+  height: 8px;
   object-fit: contain;
 }
+
 
 /* Timeline */
 
