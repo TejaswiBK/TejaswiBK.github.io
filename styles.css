@@ -143,13 +143,15 @@ img {
 }
 
 .hero-photo img {
-  width: 220px;
-  height: 220px;
-  border-radius: 999px;
-  object-fit: cover;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #ffffff;
   border: 3px solid var(--accent);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.3);
 }
+
 
 .btn {
   padding: 0.65rem 1.4rem;
