@@ -265,6 +265,17 @@ img {
   font-size: 0.9rem;
   color: var(--muted);
 }
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.skill-icon {
+  width: 14px;   /* adjust size here */
+  height: 14px;
+  object-fit: contain;
+}
 
 /* Timeline */
 
